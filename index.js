@@ -1,36 +1,22 @@
-const fs = require("fs");
+const express = require("express");
+const app = express();
 
-//to create file
-fs.writeFile("read.txt", "welcome", (err) => {
-  console.log(err);
+app.get("/", (req, res) => {
+  res.send("hellow");
 });
 
-//to change something in file
-fs.appendFile("read.txt", " to my home", (err) => {
-  console.log(err);
+app.get("/about", (req, res) => {
+  res.status(200).send("this is about page");
 });
 
-//to read file
-fs.readFile("read.txt", "utf-8", (err, data) => {
-  console.log(data);
-  console.log(err);
+app.get("/contact", (req, res) => {
+  res.send([
+    {
+      name: "ram",
+      field: "Agrii",
+    },
+  ]);
 });
-
-//rename file
-fs.rename("read.txt", "module.txt", (err) => {
-  console.log(err);
+app.listen(8000, () => {
+  console.log("listening port no. 8000");
 });
-
-// to delete file
-fs.unlink("module.txt", (err) => {
-  console.log(err);
-});
-
-//creating folder
-
-fs.mkdir("ram", (err) => {
-  console.log(err);
-});
-
-//deleting folder
-fs.rmdir("ram", () => {});
